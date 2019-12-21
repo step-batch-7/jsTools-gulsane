@@ -1,0 +1,95 @@
+Inputs:=>
+ 1. node head.js file.txt
+
+2. node head.js -n2 file.txt
+
+3. node head.js
+
+4. node head.js -n2
+
+5. node head.js <file1> <file2>
+
+6. node head.js -n 4 <file1> <file2>
+
+7. cat <fileName> | node head.js
+
+8.cat <fileName> | node head.js -n 4
+
+
+
+HEAD 1.0
+
+-------------------------------------------------------------
+[1]the last step
+
+output => string: context
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+  10
+input => array of string: requiredContext
+  ['1','2','3','4','5','6','7','8','9','10']
+name => printContent(finalContent)
+
+-----------------------------------------------------------------
+[2]the previous step
+output => array of strings: finalContent
+  a. ["1","2","3","4","5","6","7","8","9","10"]                                                 >>if only 1 valid file is given
+  b. ["1","2","3","4","5","6","7","8","9","10","head:file2.txt no such file or directory"]      >>if file1 is valid and file 2 is invalid
+input => object: parsedUserArgs
+  {noOfLines:3,filePaths:["file1.txt","file2.txt",...],stdin:undefined}
+  {noOfLines:3,filePaths:[],stdin:"<input provided by the user>"}
+name => loadAllContents(parsedUserArgs)
+
+[2.a]
+
+output => array of strings: fileContent
+  ['1','2',3','4','5','6','7','8','9','10','11','12'...]          >>if file path is valid
+  ["head:file.txt no such file or directory"]                      >>if file path is invalid
+input => string: parsedUserArgs
+  "file.txt"
+name => loadFileContent(filePath)
+
+[2.b]
+
+output => array of string: extractedLines
+  a.  ['1','2','3','4','5','6','7','8','9','10']            >> if more than or equal to 10
+  b.  ["1","2","3","4","5"]                                 >> if less than 10
+  c.  ["predefined error"]                                  >> if any error ocurred in head
+input => array of strings: allContents
+      =>numerical value : numberOfLines
+  ['1','2','3','4','5','6','7','8','9','10','11','12'...]
+  3
+name => extractLines(allContents,numberOfLines)
+
+-----------------------------------------------------------------
+[3]
+
+output => object: parsedUserArgs
+  {noOfLines:3,filePaths:["file1.txt","file2.txt"..],stdin:undefined}           >>when stdin is not provided and noOfLines will be 10 if it is not given
+  {noOfLines:3,filePaths:[],stdin:"<input provided by the user>"}               >>when file paths are not provided by the user and noOfLines will be 10 if it is not given
+input => array of strings: process.argv
+  ["node","-n","3",one.txt"]
+name => parseUserInput()
+
+[3.a]
+
+output => string:error                                    >>if invalid option
+  "head: illegal option --[option]"
+input => string: options
+  "-n"
+name => validateOptions(options)
+
+[3.b]
+
+output => string:error                                    >>if invalid option
+  "head illegal line count --number"
+input => numerical value: number
+  3
+name => validateLineCount
