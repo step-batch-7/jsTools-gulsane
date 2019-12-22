@@ -1,21 +1,13 @@
-Inputs:=>
- 1. node head.js file.txt
+all the possibilities=>
 
-2. node head.js -n2 file.txt
-
-3. node head.js
-
-4. node head.js -n2
-
-5. node head.js <file1> <file2>
-
-6. node head.js -n 4 <file1> <file2>
-
-7. cat <fileName> | node head.js
-
-8.cat <fileName> | node head.js -n 4
-
-
+1) node head.js file.txt
+2) node head.js -n2 file.txt
+3) node head.js
+4) node head.js -n2
+5) node head.js <file1> <file2> 
+6) node head.js -n 4 <file1> <file2>
+7) cat <fileName> | node head.js
+8) cat <fileName> | node head.js -n 4
 
 HEAD 1.0
 
@@ -45,7 +37,7 @@ output => array of strings: finalContent
 input => object: parsedUserArgs
   {noOfLines:3,filePaths:["file1.txt","file2.txt",...],stdin:undefined}
   {noOfLines:3,filePaths:[],stdin:"<input provided by the user>"}
-name => loadAllContents(parsedUserArgs)
+name => loadContents(parsedUserArgs)
 
 [2.a]
 
