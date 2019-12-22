@@ -50,15 +50,15 @@ name => loadFileContent(filePath)
 
 [2.b]
 
-output => array of string: extractedLines
+output => array of string: firstNLines
   a.  ['1','2','3','4','5','6','7','8','9','10']            >> if more than or equal to 10
   b.  ["1","2","3","4","5"]                                 >> if less than 10
   c.  ["predefined error"]                                  >> if any error ocurred in head
-input => array of strings: allContents
+input => strings: allContents
       =>numerical value : numberOfLines
-  ['1','2','3','4','5','6','7','8','9','10','11','12'...]
+  "1\n2\n3\n4\n5\n6\n7\n8....."
   3
-name => extractLines(allContents,numberOfLines)
+name => giveFirstNLines(allContents,numberOfLines)
 
 -----------------------------------------------------------------
 [3]

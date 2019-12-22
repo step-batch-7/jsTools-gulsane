@@ -3,24 +3,24 @@
 version [0.1] node head.js file1.txt
 ------------------------------------------------------------------------
 
-setup:-
-directories: src, test, 
-files: head.js, package.json
-module: chai
+setup:-       <done>
+✔️  directories: src, test, 
+✔️  files: head.js, package.json
+✔️  module: chai
 
-appTest:-
+appTest:-          <done>
 req_1_0_fileContainsLessThan10Lines.test
 req_1_1_fileContainsMoreThan10Lines.test
 req_1_2_fileContainsNoLines.test
 req_1_3_fileIsNotValid.test
 
-appTestData:-
+appTestData:-        <done>
 lessThanTenLines.txt
 moreThanTenLines.txt
 emptyFile.txt
 
-tasks:-
-printContent
-loadContents
-loadFileContents
-parseUserArgs
+tasks:-              <done>
+extractContents
+giveFirstNLines
+✔️  loadFileContents
+✔️  parseUserArgs    
