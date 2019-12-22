@@ -9,15 +9,15 @@ setup:-       <done>
 ✔️  module: chai
 
 appTest:-          <done>
-req_1_0_fileContainsLessThan10Lines.test
-req_1_1_fileContainsMoreThan10Lines.test
-req_1_2_fileContainsNoLines.test
-req_1_3_fileIsNotValid.test
+✔️req_1_0_fileContainsLessThan10Lines.test
+✔️req_1_1_fileContainsMoreThan10Lines.test
+✔️req_1_2_fileContainsNoLines.test
+✔️req_1_3_fileIsNotValid.test
 
 appTestData:-        <done>
-lessThanTenLines.txt
-moreThanTenLines.txt
-emptyFile.txt
+✔️lessThanTenLines.txt
+✔️moreThanTenLines.txt
+✔️emptyFile.txt
 
 tasks:-              <done>
 ✔️  extractContents

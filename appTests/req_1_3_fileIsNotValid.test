@@ -1,0 +1,2 @@
+node head.js foo.txt
+head: foo.txt: no such file or directory
