@@ -10,4 +10,12 @@ const giveFirstNLines = function(content, noOfLines) {
   return totalLines.slice(0, noOfLines);
 };
 
-module.exports = { loadFileContent, giveFirstNLines };
+const extractContent = function(parsedArgs, fileSys) {
+  const filePath = parsedArgs.filePaths[0];
+  const { noOfLines } = parsedArgs;
+  const fileText = loadFileContent(filePath, fileSys);
+  const content = giveFirstNLines(fileText, noOfLines);
+  return content.join("\n");
+};
+
+module.exports = { loadFileContent, giveFirstNLines, extractContent };

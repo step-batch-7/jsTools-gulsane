@@ -20,7 +20,7 @@ moreThanTenLines.txt
 emptyFile.txt
 
 tasks:-              <done>
-extractContents
-giveFirstNLines
+✔️  extractContents
+✔️  giveFirstNLines
 ✔️  loadFileContents
 ✔️  parseUserArgs    
