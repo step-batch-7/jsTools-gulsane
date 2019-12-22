@@ -1,4 +1,3 @@
-const fs = require("fs");
 const loadFileContent = function(filePath, fileSys) {
   if (fileSys.exists(filePath)) {
     return fileSys.reader(filePath, "utf8");
@@ -6,4 +5,9 @@ const loadFileContent = function(filePath, fileSys) {
   return `head: ${filePath}: no such file or directory`;
 };
 
-module.exports = { loadFileContent };
+const giveFirstNLines = function(content, noOfLines) {
+  const totalLines = content.split("\n");
+  return totalLines.slice(0, noOfLines);
+};
+
+module.exports = { loadFileContent, giveFirstNLines };
