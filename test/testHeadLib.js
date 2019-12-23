@@ -3,33 +3,12 @@ const { getFirstTenLines, loadFileContent } = require("../src/headLib");
 
 describe("loadFileContent", () => {
   it("should return the content of the file when file is valid", () => {
-    const fileSys = {
-      reader: function(path) {
-        assert.strictEqual(path, "file.txt");
-        return "hello";
-      },
-      exists: function(path) {
-        assert.strictEqual(path, "file.txt");
-        return true;
-      }
+    const reader = function(path) {
+      assert.strictEqual(path, "file.txt");
+      return "hello";
     };
-    const actual = loadFileContent("file.txt", fileSys);
+    const actual = loadFileContent("file.txt", reader);
     assert.strictEqual(actual, "hello");
-  });
-  it("should return an error msg when file is invalid", () => {
-    const fileSys = {
-      reader: function(path) {
-        assert.strictEqual(path, "file.txt");
-        return "hello";
-      },
-      exists: function(path) {
-        assert.strictEqual(path, "file.txt");
-        return false;
-      }
-    };
-    const actual = loadFileContent("file.txt", fileSys);
-    const errorMsg = "head: file.txt: no such file or directory";
-    assert.strictEqual(actual.message, errorMsg);
   });
 });
 
@@ -87,7 +66,7 @@ describe("getFirstTenLines", () => {
   it("should return error message for invalid file", () => {
     const expected = "head: file.txt: no such file or directory";
     const displayOutput = function(output) {
-      assert.deepStrictEqual(output.message, expected);
+      assert.deepStrictEqual(output.errorMsg, expected);
     };
     const fileSys = {
       reader: function(path) {

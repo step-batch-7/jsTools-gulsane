@@ -4,7 +4,7 @@ const { getFirstTenLines } = require("./src/headLib");
 const fileSys = { exists: fs.existsSync, reader: fs.readFileSync };
 
 const displayOutput = function(output) {
-  output instanceof Error && stderr.write(output.message);
+  output.errorMsg && stderr.write(output.errorMsg);
   output.firstTenLines && stdout.write(output.firstTenLines);
 };
 const main = function(userArgs) {
