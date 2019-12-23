@@ -1,2 +1,2 @@
-node head.js foo.txt
-head: foo.txt: no such file or directory
+node head.js invalidFile.txt
+head: invalidFile.txt: no such file or directory

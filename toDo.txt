@@ -2,16 +2,15 @@
 
 version [0.1] node head.js file1.txt
 ------------------------------------------------------------------------
-
 setup:-       <done>
 ✔️  directories: src, test, 
 ✔️  files: head.js, package.json
 ✔️  module: chai
 
 appTest:-          <done>
-✔️req_1_0_fileContainsLessThan10Lines.test
-✔️req_1_1_fileContainsMoreThan10Lines.test
-✔️req_1_2_fileContainsNoLines.test
+✔️node head.js ./appTestsData/fileHasLessThanTenLines.txt
+✔️node head.js ./appTestsData/fileHasMoreThanTenLines.txt
+✔️node head.js ./appTestData/emptyFile.txt
 ✔️req_1_3_fileIsNotValid.test
 
 appTestData:-        <done>
@@ -20,7 +19,6 @@ appTestData:-        <done>
 ✔️emptyFile.txt
 
 tasks:-              <done>
-✔️  extractContents
-✔️  giveFirstNLines
+✔️ getFirstTenLines
 ✔️  loadFileContents
-✔️  parseUserArgs    
+------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-node head.js ./appTestsData/lessThanNoOfLines.txt
+node head.js ./appTestsData/fileHasLessThanTenLines.txt
 1
 2
 3

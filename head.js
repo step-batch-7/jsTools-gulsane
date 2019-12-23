@@ -1,13 +1,10 @@
-const { parseUserArgs } = require("./src/parseUserArgs");
-const { extractContent } = require("./src/loadContent");
+const { stdout } = require("process");
 const fs = require("fs");
-
-const fileSys = { reader: fs.readFileSync, exists: fs.existsSync };
+const { getFirstTenLines } = require("./src/headLib");
+const fileSys = { exists: fs.existsSync, reader: fs.readFileSync };
 
 const main = function(userArgs) {
-  const parsedArgs = parseUserArgs(userArgs);
-  const content = extractContent(parsedArgs, fileSys);
-  if (content.length == 0) return;
-  console.log(content);
+  const firstTenLines = getFirstTenLines(userArgs, fileSys);
+  stdout.write(firstTenLines);
 };
 main(process.argv.slice(2));
