@@ -6,7 +6,7 @@ const getFirstTenLines = function(userArgs, displayOutput, fileSys) {
   const filePath = userArgs[0];
   const { reader, exists } = fileSys;
   if (!exists(filePath)) {
-    const error = { errorMsg: `head: ${filePath}: no such file or directory` };
+    const error = { errorMsg: `head: ${filePath}: No such file or directory` };
     return displayOutput(error);
   }
   const fileContent = loadFileContent(filePath, reader);

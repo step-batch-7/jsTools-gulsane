@@ -1,2 +1,2 @@
 node head.js invalidFile.txt
-head: invalidFile.txt: no such file or directory
+head: invalidFile.txt: No such file or directory

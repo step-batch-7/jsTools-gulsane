@@ -64,7 +64,7 @@ describe("getFirstTenLines", () => {
     getFirstTenLines(["file.txt"], displayOutput, fileSys);
   });
   it("should return error message for invalid file", () => {
-    const expected = "head: file.txt: no such file or directory";
+    const expected = "head: file.txt: No such file or directory";
     const displayOutput = function(output) {
       assert.deepStrictEqual(output.errorMsg, expected);
     };
