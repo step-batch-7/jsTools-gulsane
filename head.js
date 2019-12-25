@@ -1,9 +1,9 @@
 const fs = require("fs");
 const { getFirstTenLines } = require("./src/headLib");
 
-const displayOutput = function(output) {
-  output.errorMsg && process.stderr.write(output.errorMsg);
-  output.firstTenLines && process.stdout.write(output.firstTenLines);
+const displayOutput = {
+  showError: error => process.stderr.write(error),
+  showLines: lines => process.stdout.write(lines)
 };
 
 const main = function(userArgs) {
