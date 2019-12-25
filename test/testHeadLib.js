@@ -1,16 +1,5 @@
 const assert = require("chai").assert;
-const { getFirstTenLines, loadFileContent } = require("../src/headLib");
-
-describe("loadFileContent", () => {
-  it("should return the content of the file when file is valid", () => {
-    const reader = function(path) {
-      assert.strictEqual(path, "file.txt");
-      return "hello";
-    };
-    const actual = loadFileContent("file.txt", reader);
-    assert.strictEqual(actual, "hello");
-  });
-});
+const { getFirstTenLines } = require("../src/headLib");
 
 describe("getFirstTenLines", () => {
   it("should return 10 lines if file contains more than 10 lines", () => {
@@ -19,11 +8,11 @@ describe("getFirstTenLines", () => {
       assert.deepStrictEqual(output, { firstTenLines: expected });
     };
     const fileSys = {
-      reader: function(path) {
+      readFile: function(path) {
         assert.strictEqual(path, "file.txt");
         return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].join("\n");
       },
-      exists: function(path) {
+      existsSync: function(path) {
         assert.strictEqual(path, "file.txt");
         return true;
       }
@@ -36,11 +25,11 @@ describe("getFirstTenLines", () => {
       assert.deepStrictEqual(output, { firstTenLines: expected });
     };
     const fileSys = {
-      reader: function(path) {
+      readFile: function(path) {
         assert.strictEqual(path, "file.txt");
         return [1, 2, 3, 4, 5, 6, 7, 8].join("\n");
       },
-      exists: function(path) {
+      existsSync: function(path) {
         assert.strictEqual(path, "file.txt");
         return true;
       }
@@ -52,11 +41,11 @@ describe("getFirstTenLines", () => {
       assert.deepStrictEqual(output, { firstTenLines: "" });
     };
     const fileSys = {
-      reader: function(path) {
+      readFile: function(path) {
         assert.strictEqual(path, "file.txt");
         return "";
       },
-      exists: function(path) {
+      existsSync: function(path) {
         assert.strictEqual(path, "file.txt");
         return true;
       }
@@ -69,11 +58,11 @@ describe("getFirstTenLines", () => {
       assert.deepStrictEqual(output.errorMsg, expected);
     };
     const fileSys = {
-      reader: function(path) {
+      readFile: function(path) {
         assert.strictEqual(path, "file.txt");
         return "";
       },
-      exists: function(path) {
+      existsSync: function(path) {
         assert.strictEqual(path, "file.txt");
         return false;
       }

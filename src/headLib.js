@@ -1,20 +1,20 @@
-const loadFileContent = function(filePath, reader) {
-  return reader(filePath, "utf8");
-};
-
 const getFirstTenLines = function(userArgs, displayOutput, fileSys) {
   const filePath = userArgs[0];
-  const { reader, exists } = fileSys;
-  if (!exists(filePath)) {
-    const error = { errorMsg: `head: ${filePath}: No such file or directory` };
-    return displayOutput(error);
+  if (!fileSys.existsSync(filePath)) {
+    return displayOutput({
+      errorMsg: `head: ${filePath}: No such file or directory`
+    });
   }
-  const fileContent = loadFileContent(filePath, reader);
-  const firstTenLines = fileContent
-    .split("\n")
-    .slice(0, 10)
-    .join("\n");
-  return displayOutput({ firstTenLines });
+  const loadFirstTenLines = function(data) {
+    const firstTenLines = data
+      .split("\n")
+      .slice(0, 10)
+      .join("\n");
+    return displayOutput({ firstTenLines });
+  };
+  fileSys.readFile(filePath, "utf8", (err, data) => {
+    loadFirstTenLines(data);
+  });
 };
 
-module.exports = { getFirstTenLines, loadFileContent };
+module.exports = { getFirstTenLines };
