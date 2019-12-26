@@ -10,7 +10,7 @@ setup:-       <done>
 appTest:-          <done>
 ✔️node head.js ./appTestsData/fileHasLessThanTenLines.txt
 ✔️node head.js ./appTestsData/fileHasMoreThanTenLines.txt
-✔️node head.js ./appTestData/emptyFile.txt
+✔️node head.js ./appTestsData/emptyFile.txt
 ✔️node head.js invalidFile.txt
 ✔️node head.js ../src
 
