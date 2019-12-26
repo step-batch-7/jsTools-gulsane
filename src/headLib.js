@@ -1,19 +1,17 @@
-const getFirstTenLines = function(userArgs, displayOutput, fileSys) {
-  const filePath = userArgs[0];
-  if (!fileSys.existsSync(filePath)) {
-    const error = `head: ${filePath}: No such file or directory`;
-    return displayOutput.showError(error);
+const loadFirstTenLines = function(err, data) {
+  if (err) {
+    const error = `head: ${this.filePath}: No such file or directory`;
+    return this.showError(error);
   }
-  const loadFirstTenLines = function(data) {
-    const firstTenLines = data
-      .split("\n")
-      .slice(0, 10)
-      .join("\n");
-    return displayOutput.showLines(firstTenLines);
-  };
-  fileSys.readFile(filePath, "utf8", (err, data) => {
-    loadFirstTenLines(data);
-  });
+  const firstTenLines = data.split("\n").slice(0, 10);
+  return this.showLines(firstTenLines.join("\n"));
 };
 
-module.exports = { getFirstTenLines };
+const getFirstTenLines = function(userArgs, displayOutput, fileSys) {
+  const filePath = userArgs[0];
+  const bundleForLineLoad = { ...displayOutput, filePath };
+  displayOutput.filePath = filePath;
+  fileSys.readFile(filePath, "utf8", loadFirstTenLines.bind(bundleForLineLoad));
+};
+
+module.exports = { getFirstTenLines, loadFirstTenLines };
