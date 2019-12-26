@@ -1,0 +1,2 @@
+node head.js ../src
+head: Error reading ../src

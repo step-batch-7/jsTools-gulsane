@@ -11,7 +11,8 @@ appTest:-          <done>
 ✔️node head.js ./appTestsData/fileHasLessThanTenLines.txt
 ✔️node head.js ./appTestsData/fileHasMoreThanTenLines.txt
 ✔️node head.js ./appTestData/emptyFile.txt
-✔️req_1_3_fileIsNotValid.test
+✔️node head.js invalidFile.txt
+✔️node head.js ../src
 
 appTestData:-        <done>
 ✔️lessThanTenLines.txt

@@ -11,12 +11,29 @@ describe("loadFirstTenLines", () => {
     const data = [1, 2, 3, 4, 5].join("\n");
     loadFirstTenLines.bind(bundleForLoadLine)(null, data);
   });
-  it("should return error if there is an error", () => {
+  it("should return error if file not exists", () => {
     const expected = "head: file.txt: No such file or directory";
     const showLines = lines => assert.deepStrictEqual(lines, expected);
     const showError = error => assert.deepStrictEqual(error, expected);
     const bundleForLoadLine = { showError, showLines, filePath };
-    loadFirstTenLines.bind(bundleForLoadLine)("error", undefined);
+    const error = { code: "ENOENT" };
+    loadFirstTenLines.bind(bundleForLoadLine)(error, undefined);
+  });
+  it("should return error while invoking a directory", () => {
+    const expected = "head: Error reading file.txt";
+    const showLines = lines => assert.deepStrictEqual(lines, expected);
+    const showError = error => assert.deepStrictEqual(error, expected);
+    const bundleForLoadLine = { showError, showLines, filePath };
+    const error = { code: "EISDIR" };
+    loadFirstTenLines.bind(bundleForLoadLine)(error, undefined);
+  });
+  it("should return the error when file is larger than buffer size", () => {
+    const expected = "head: Error reading file.txt";
+    const showLines = lines => assert.deepStrictEqual(lines, expected);
+    const showError = error => assert.deepStrictEqual(error, expected);
+    const bundleForLoadLine = { showError, showLines, filePath };
+    const error = { code: "ERR_FS_FILE_TOO_LARGE" };
+    loadFirstTenLines.bind(bundleForLoadLine)(error, undefined);
   });
 });
 
