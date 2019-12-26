@@ -23,3 +23,37 @@ tasks:-              <done>
 ✔️ getFirstTenLines
 ✔️  loadFileContents
 ------------------------------------------------------------------------
+
+
+version [0.2] node head.js -n 4 file.txt
+              [0.2.1] node head.js -n 4 file.txt
+              [0.2.2] node head.js -n4 file.txt
+              [0.2.3] node head.js -4 file.txt
+------------------------------------------------------------------------
+>>>>>>>>>>>>>>>>>version[0.2.1] node head -n 4 file.txt<<<<<<<<<<<<<<<<<
+appTest:-
+  node head.js -n 13 ./fileHasLessThanTenLines.txt
+  node head.js -n 4 ./fileHasLessThanTenLines.txt
+  node head.js -n 6 ./emptyFile.txt
+  node head.js -n 5 ./invalidFile.txt
+  node head.js -n 4.4 ./fileHasLessThanTenLines.txt
+  node head.js -a 4 ./fileHasLessThanTenLines.txt
+
+tasks:-
+  parseUserArgs
+  separateOptionsAndFile
+  validateOptions
+  validateLineNumber
+  giveFirstNLines
+  getFirstTenLines   >>has to refactor and rename
+
+working scenarios:-
+  node head.js -n 4 file.txt
+  node head.js file.txt
+
+error scenarios:-
+  node head.js -n <any number other than positive non decimal number> file.txt       =>>head: illegal line count -- <number>
+  node head.js -n <alphabets> file.txt                                               =>>head: illegal line count -- <alphabet>
+  node head.js -n 4 <missingFile.txt>                                                =>>head: <missingFile.txt>: no such file or directory
+  node head.js -a 4 file.txt                                                         =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
+  node head.js -abcd 4 file.txt                                                      =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
