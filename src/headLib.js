@@ -1,9 +1,3 @@
-const validateLineNumber = function(noOfLines) {
-  return (
-    noOfLines > 0 && Number.isInteger(+noOfLines) && !noOfLines.includes(".")
-  );
-};
-
 const loadFirstTenLines = function(err, data) {
   if (err) {
     const fileError = `head: ${this.filePath}: No such file or directory`;
@@ -21,4 +15,4 @@ const getFirstTenLines = function(userArgs, displayOutput, fileSys) {
   fileSys.readFile(filePath, "utf8", loadFirstTenLines.bind(bundleForLineLoad));
 };
 
-module.exports = { getFirstTenLines, loadFirstTenLines, validateLineNumber };
+module.exports = { getFirstTenLines, loadFirstTenLines };
