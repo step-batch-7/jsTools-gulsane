@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { getFirstTenLines } = require("./src/headLib");
+const { getFirstNLines } = require("./src/headLib");
 
 const displayOutput = {
   showError: error => process.stderr.write(error),
@@ -7,6 +7,6 @@ const displayOutput = {
 };
 
 const main = function(userArgs) {
-  getFirstTenLines(userArgs, displayOutput, fs);
+  getFirstNLines(userArgs, fs, displayOutput);
 };
 main(process.argv.slice(2));
