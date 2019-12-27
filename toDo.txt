@@ -57,3 +57,4 @@ error scenarios:-
   node head.js -n 4 <missingFile.txt>                                                =>>head: <missingFile.txt>: no such file or directory
   node head.js -a 4 file.txt                                                         =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
   node head.js -abcd 4 file.txt                                                      =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
+  node head.js -n 4 -abcd                                                            =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
