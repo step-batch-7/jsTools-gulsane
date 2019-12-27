@@ -1,5 +1,31 @@
 const assert = require("chai").assert;
-const { getFirstTenLines, loadFirstTenLines } = require("../src/headLib");
+const {
+  getFirstTenLines,
+  loadFirstTenLines,
+  validateLineNumber
+} = require("../src/headLib");
+
+describe("validateLIneNumber", () => {
+  it("should validate the positive non decimal floating number", () => {
+    const actual = validateLineNumber("2");
+    assert.isOk(actual);
+  });
+  it("should invalidate the negative number", () => {
+    const actual = validateLineNumber("-2");
+    assert.isNotOk(actual);
+  });
+  it("should invalidate the decimal floating number", () => {
+    const actual = validateLineNumber("2.0");
+    assert.isNotOk(actual);
+  });
+  it("should invalidate the non numerical value", () => {
+    const actual = validateLineNumber("abc");
+    assert.isNotOk(actual);
+  });
+  it("should invalidate the combination of number and alphabets", () => {
+    assert.isNotOk(validateLineNumber("2abc"));
+  });
+});
 
 describe("loadFirstTenLines", () => {
   const filePath = "file.txt";
