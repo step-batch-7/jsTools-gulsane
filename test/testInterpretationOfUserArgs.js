@@ -74,4 +74,12 @@ describe("separateOptionsAndFiles", () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
+  it("should consider the field joined with option", () => {
+    const actual = separateOptionsAndFiles(["-n3", "file"]);
+    const expected = {
+      options: [{ option: "-n", field: "3" }],
+      files: ["file"]
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
 });

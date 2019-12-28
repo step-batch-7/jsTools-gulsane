@@ -40,12 +40,12 @@ appTest:-
   node head.js -a 4 ./appTestsData/fileHasLessThanTenLines.txt
 
 tasks:-
-  parseUserArgs
   separateOptionsAndFile
   validateOptions
   validateLineNumber
   giveFirstNLines
   getFirstTenLines   >>has to refactor and rename
+  head               >>as a pseudo mani
 
 working scenarios:-
   node head.js -n 4 file.txt
@@ -58,3 +58,10 @@ error scenarios:-
   node head.js -a 4 file.txt                                                         =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
   node head.js -abcd 4 file.txt                                                      =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
   node head.js -n 4 -abcd                                                            =>>head: illegal option -- a\nusage: head [-n lines | -c bytes] [file ...]
+
+>>>>>>>>>>>>>>>>>version[0.2.2] node head -n4 file.txt<<<<<<<<<<<<<<<<<
+appTest:-
+  node head.js -n13 ./appTestsData/fileHasLessThanTenLines.txt
+
+tasks:-
+separateOptionsAndFile    >>has to refactor

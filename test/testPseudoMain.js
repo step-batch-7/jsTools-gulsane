@@ -51,4 +51,19 @@ describe("head", () => {
     const expected = [1, 2, 3, 4, 5].join("\n");
     head(["-n", "5", "file.txt"], fileSys, displayOutput);
   });
+  it("should return the no off lines when option and field are joined", () => {
+    const displayOutput = {
+      showError: error => assert.strictEqual(error, expected),
+      showLines: lines => assert.strictEqual(lines, expected)
+    };
+    const fileSys = {
+      readFile: function(path, encoding, callBack) {
+        assert.strictEqual(path, "file.txt");
+        assert.strictEqual(encoding, "utf8");
+        callBack(null, [1, 2, 3, 4, 5].join("\n"));
+      }
+    };
+    const expected = [1, 2, 3, 4, 5].join("\n");
+    head(["-n5", "file.txt"], fileSys, displayOutput);
+  });
 });
