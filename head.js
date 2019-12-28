@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { getFirstNLines } = require("./src/headLib");
+const { head } = require("./src/pseudoMain");
 
 const displayOutput = {
   showError: error => process.stderr.write(error),
@@ -7,6 +7,6 @@ const displayOutput = {
 };
 
 const main = function(userArgs) {
-  getFirstNLines(userArgs, fs, displayOutput);
+  head(userArgs, fs, displayOutput);
 };
 main(process.argv.slice(2));

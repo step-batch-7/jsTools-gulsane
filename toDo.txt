@@ -32,12 +32,12 @@ version [0.2] node head.js -n 4 file.txt
 ------------------------------------------------------------------------
 >>>>>>>>>>>>>>>>>version[0.2.1] node head -n 4 file.txt<<<<<<<<<<<<<<<<<
 appTest:-
-  node head.js -n 13 ./fileHasLessThanTenLines.txt
-  node head.js -n 4 ./fileHasLessThanTenLines.txt
-  node head.js -n 6 ./emptyFile.txt
-  node head.js -n 5 ./invalidFile.txt
-  node head.js -n 4.4 ./fileHasLessThanTenLines.txt
-  node head.js -a 4 ./fileHasLessThanTenLines.txt
+  node head.js -n 13 ./appTestsData/fileHasLessThanTenLines.txt
+  node head.js -n 4 ./appTestsData/fileHasLessThanTenLines.txt
+  node head.js -n 6 ./appTestsData/emptyFile.txt
+  node head.js -n 5 ./appTestsData/missingFile.txt
+  node head.js -n 4.4 ./appTestsData/fileHasLessThanTenLines.txt
+  node head.js -a 4 ./appTestsData/fileHasLessThanTenLines.txt
 
 tasks:-
   parseUserArgs

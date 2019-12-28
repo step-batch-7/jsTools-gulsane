@@ -1,0 +1,1 @@
+node head.js -n 8 ./appTestsData/emptyFile.txt

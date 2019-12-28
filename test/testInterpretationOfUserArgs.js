@@ -38,7 +38,7 @@ describe("separateOptionsAndFiles", () => {
     assert.deepStrictEqual(actual, expected);
   });
   it("should return the options first possible options", () => {
-    const actual = separateOptionsAndFiles(["-n", "6", "-hai", "9", "file"]);
+    const actual = separateOptionsAndFiles(["-n", "6", "-h", "9", "file"]);
     const expected = {
       options: [
         { option: "-n", field: "6" },
@@ -52,7 +52,7 @@ describe("separateOptionsAndFiles", () => {
     const actual = separateOptionsAndFiles([
       "-n",
       "6",
-      "-hai",
+      "-h",
       "9",
       "file1",
       "file2"

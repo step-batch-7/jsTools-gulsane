@@ -42,4 +42,7 @@ describe("validateLIneNumber", () => {
   it("should invalidate the combination of number and alphabets", () => {
     assert.isNotOk(validateLineNumber("2abc"));
   });
+  it("should invalidate the 0", () => {
+    assert.isNotOk(validateLineNumber("0"));
+  });
 });

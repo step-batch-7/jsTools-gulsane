@@ -1,0 +1,2 @@
+node head.js -n 4.4 ./appTestsData/fileHasLessThanTenLines.txt
+head: illegal line count -- 4.4

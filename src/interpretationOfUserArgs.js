@@ -9,8 +9,8 @@ const separateOptionsAndFiles = function(userArgs) {
   while (canBeOption(userArgs[i])) {
     const option = userArgs[i].slice(0, 2);
     const field = userArgs[i + 1];
-    options.push({ option, field });
     i = i + 2;
+    options.push({ option, field });
   }
   const files = userArgs.slice(i, userArgs.length);
   return { options, files };

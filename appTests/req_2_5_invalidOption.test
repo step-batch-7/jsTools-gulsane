@@ -1,0 +1,3 @@
+node head.js -a 4 ./appTestsData/fileHasLessThanTenLines.txt
+head: illegal option -- a
+usage: head [-n lines | -c bytes] [file ...]

@@ -1,0 +1,2 @@
+node head.js -n 5 missingFile.txt
+head: missingFile.txt: No such file or directory
