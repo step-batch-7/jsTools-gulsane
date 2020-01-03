@@ -6,16 +6,24 @@ const canBeOption = function (arg) {
   return arg.startsWith('-') && arg.length >= optionLength;
 };
 
+const updateOption = function (defaultArgs, argument) {
+  defaultArgs.lastOption = argument;
+  return defaultArgs;
+};
+
+const updateField = function (defaultArgs, argument) {
+  const option = defaultArgs.lastOption;
+  defaultArgs.options.push({option, field: argument});
+  defaultArgs.lastOption = undefined;
+  return defaultArgs;
+};
+
 const separator = function (defaultArgs, argument) {
   if (defaultArgs.lastOption) {
-    const option = defaultArgs.lastOption;
-    defaultArgs.options.push({option, field: argument});
-    defaultArgs.lastOption = undefined;
-    return defaultArgs;
+    return updateField(defaultArgs, argument);
   }
   if (canBeOption(argument)) {
-    defaultArgs.lastOption = argument;
-    return defaultArgs;
+    return updateOption(defaultArgs, argument);
   }
   defaultArgs.files.push(argument);
   return defaultArgs;
