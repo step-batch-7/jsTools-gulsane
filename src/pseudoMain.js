@@ -1,25 +1,30 @@
-const { separateOptionsAndFiles } = require("./interpretationOfUserArgs");
-const { validateOptionAndField } = require("./validationLib");
-const { getFirstNLines } = require("./headLib");
+const {separateOptionsAndFiles} = require('./interpretationOfUserArgs');
+const {validateOptionAndField} = require('./validationLib');
+const {getFirstNLines} = require('./headLib');
 
-const optionHandler = function(options) {
+const optionHandler = function (options) {
   let error;
   options.every(option => {
-    error = validateOptionAndField(option);
+    const errorStatement = validateOptionAndField(option);
+    error = errorStatement.error;
+    return errorStatement.validity;
   });
   return error;
 };
 
-const head = function(userArgs, fileSys, displayOutput) {
-  const optionsAndFields = separateOptionsAndFiles(userArgs);
-  const { options, files } = optionsAndFields;
+const head = function (userArgs, fileSys, displayOutput) {
+  const {options, files} = separateOptionsAndFiles(userArgs);
+  const firstOptionIndex = 0;
   let numberOfLines = 10;
-  if (options.length > 0) {
+  if (options.length > firstOptionIndex) {
     const optionError = optionHandler(options);
-    if (optionError) return displayOutput.showError(optionError);
-    numberOfLines = options[options.length - 1].field;
+    if (optionError) {
+      return displayOutput.showError(optionError);
+    }
+    numberOfLines = options[firstOptionIndex].field;
   }
-  getFirstNLines(files, fileSys, displayOutput, numberOfLines);
+  const parsedUserArgument = {numberOfLines, files};
+  getFirstNLines(parsedUserArgument, fileSys, displayOutput);
 };
 
-module.exports = { head };
+module.exports = {head};

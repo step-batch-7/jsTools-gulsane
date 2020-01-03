@@ -1,25 +1,30 @@
-const canBeOption = function(arg) {
-  if (!arg) return false;
-  return arg[0] == "-" && arg.length > 1;
-};
-
-const separateOptionsAndFiles = function(userArgs) {
-  const options = [];
-  let i = 0;
-  while (canBeOption(userArgs[i])) {
-    const option = userArgs[i].slice(0, 2);
-    let field = "";
-    if (userArgs[i].substring(2)) {
-      field = userArgs[i].substring(2);
-      i = i + 1;
-    } else {
-      field = userArgs[i + 1];
-      i = i + 2;
-    }
-    options.push({ option, field });
+const canBeOption = function (arg) {
+  const optionLength = 2;
+  if (!arg) {
+    return false;
   }
-  const files = userArgs.slice(i, userArgs.length);
-  return { options, files };
+  return arg.startsWith('-') && arg.length >= optionLength;
 };
 
-module.exports = { separateOptionsAndFiles, canBeOption };
+const separator = function (defaultArgs, argument) {
+  if (defaultArgs.lastOption) {
+    const option = defaultArgs.lastOption;
+    defaultArgs.options.push({option, field: argument});
+    defaultArgs.lastOption = undefined;
+    return defaultArgs;
+  }
+  if (canBeOption(argument)) {
+    defaultArgs.lastOption = argument;
+    return defaultArgs;
+  }
+  defaultArgs.files.push(argument);
+  return defaultArgs;
+};
+
+const separateOptionsAndFiles = function (userArgs) {
+  const defaultArgs = {options: [], files: []};
+  const {options, files} = userArgs.reduce(separator, defaultArgs);
+  return {options, files};
+};
+
+module.exports = {separateOptionsAndFiles, canBeOption};
