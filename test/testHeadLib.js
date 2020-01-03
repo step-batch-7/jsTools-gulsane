@@ -7,7 +7,7 @@ describe('loadFirstNLines', () => {
     const showLines = lines => assert.deepStrictEqual(lines, expected);
     const bundleForLoadLine = {showLines, filePath, numberOfLines: 5};
     const data = '1 2 3 4 5'.split(' ').join('\n');
-    const expected = '1 2 3 4 5 6'.split(' ').join('\n');
+    const expected = '1 2 3 4 5'.split(' ').join('\n');
     loadFirstNLines.bind(bundleForLoadLine)(null, data);
   });
   it('should return n lines if present lines are more and no error', () => {
