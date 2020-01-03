@@ -7,7 +7,7 @@ const displayOutput = {
 };
 
 const main = function (cmdLineArgument) {
-  const [, , userArgs] = cmdLineArgument;
+  const [, , ...userArgs] = cmdLineArgument;
   head(userArgs, fs, displayOutput);
 };
 main(process.argv);
