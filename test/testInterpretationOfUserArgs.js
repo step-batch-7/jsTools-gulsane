@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const {
   separateOptionsAndFiles,
-  canBeOption
+  canBeOption, parseUserArguments
 } = require('../src/interpretationOfUserArgs');
 
 describe('canBeOption', () => {
@@ -74,5 +74,37 @@ describe('separateOptionsAndFiles', () => {
     const actual = separateOptionsAndFiles([]);
     const expected = {options: [], files: []};
     assert.deepStrictEqual(actual, expected);
+  });
+});
+
+describe('parseUserArguments', () => {
+  describe('#invalid options', () => {
+    it('should return option error along with options and files', () => {
+      const actual = parseUserArguments(['-k', '3', 'file.txt']);
+      const expected = {
+        options: [{option: '-k', field: '3'}], files: ['file.txt'],
+        optionError: 'head: illegal option -- k\nusage: head [-n lines | -c bytes] [file ...]'
+      };
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('should return field error along with options and files', () => {
+      const actual = parseUserArguments(['-n', '3.5', 'file.txt']);
+      const expected = {
+        options: [{option: '-n', field: '3.5'}], files: ['file.txt'],
+        optionError: 'head: illegal line count -- 3.5'
+      };
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
+
+  describe('#valid options', () => {
+    it('should return options and files ', () => {
+      const actual = parseUserArguments(['-n', '3', 'file.txt']);
+      const expected = {
+        options: [{option: '-n', field: '3'}], files: ['file.txt'],
+        optionError: undefined
+      };
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });

@@ -1,3 +1,5 @@
+const {validateOptionAndField} = require('./validationLib');
+
 const canBeOption = function (arg) {
   const optionLength = 2;
   if (!arg) {
@@ -35,4 +37,21 @@ const separateOptionsAndFiles = function (userArgs) {
   return {options, files};
 };
 
-module.exports = {separateOptionsAndFiles, canBeOption};
+const spotOptionError = function (options) {
+  let error;
+  options.every(option => {
+    const errorStatement = validateOptionAndField(option);
+    error = errorStatement.error;
+    return errorStatement.validity;
+  });
+  return error;
+};
+
+const parseUserArguments = function (userArgs) {
+  const {options, files} = separateOptionsAndFiles(userArgs);
+  const optionError = spotOptionError(options);
+
+  return {options, files, optionError};
+};
+
+module.exports = {separateOptionsAndFiles, canBeOption, parseUserArguments};
